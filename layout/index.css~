@@ -1,0 +1,62 @@
+body{
+background: url("background.jpg") no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+@media (min-width: 1000px){
+.container{
+position: absolute;
+width:900px;
+height:300px;
+top:50%;
+left: 50%;
+margin-left:-450;
+margin-top:-150;
+box-shadow: 10px 10px 5px #888888;
+background-color:#FFFFF0;
+}
+}
+
+@media(max-width: 1000px) and (orientation: landscape){
+.container{
+position: absolute;
+width:700px;
+height:300px;
+top:50%;
+left: 50%;
+margin-left:-350;
+margin-top:-150;
+box-shadow: 10px 10px 5px #888888;
+background-color:#FFFFF0;
+transform: scale(1.25);
+-ms-transform: scale(1.25);
+-webkit-transform: scale(1.25);
+}
+}
+
+@media(max-width: 1000px) and (orientation: portrait){
+.container{
+position: absolute;
+width:300px;
+height:400px;
+top:50%;
+left: 50%;
+padding:0;
+margin-left:-150;
+margin-top:-200;
+box-shadow: 10px 10px 5px #888888;
+background-color:#FFFFF0;
+transform: scale(3);
+-ms-transform: scale(3);
+-webkit-transform: scale(3);
+}
+}
+
+.field{
+text-align:center;
+margin-left:auto;
+margin-right:auto;
+margin-top:50px;
+}

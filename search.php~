@@ -1,0 +1,40 @@
+<?php
+ if(isset($_POST['submit'])){ 
+	  if(isset($_GET['go'])){ 
+	  if(preg_match("/^[  a-zA-Z]+/", $_POST['name'])){ 
+	  $name=$_POST['name'];
+	  
+$db = array(
+	'host' => 'localhost',
+	'user' => 'root',
+	'pass' => ' ',
+	'dbname' => 'eldertracker_db'
+	);
+&naam_eigenaar = $_GET["naam_eigenaar"];
+
+if(!mysql_connect($db['host'], $db['user'], $db['pass']))
+ {
+	echo 'Fout bij verbinden: ' .mysql_error();
+ }
+elseif(!mysql_select_db($db['dbname']))
+ {
+	echo 'Fout bij selecteren database: ' .mysql_error();
+ }
+	  //-query  the database table 
+	  $sql="naam_eigenaar FROM tabel WHERE naam_eigenaar LIKE '%" . $name .  "%' "; 
+	  //-run  the query against the mysql query function 
+	  $result=mysql_query($sql); 
+	  //-create  while loop and loop through result set 
+	  while($row=mysql_fetch_array($result)){ 
+	          $naam_eigenaar  =$row['FirstName']; 
+ 
+	  //-display the result of the array 
+	  echo "<ul>\n"; 
+	  echo "<li>" . "<a  href=\"direction.php?id=$naam_eigenaar\"></a></li>\n"; 
+	  echo "</ul>"; 
+	  } 
+	  } 
+	  else{ 	  echo  "<p>Please enter a search query</p>"; 	  } 
+  } 
+  } 
+	?> 

@@ -1,0 +1,59 @@
+<?php 
+
+$db = array ( 
+    'host' => 'localhost', 
+    'user' => 'root', 
+    'pass' => '', 
+    'dbname' => 'eldertracker_db' 
+); 
+
+$device_id = $_GET["get_device_id"];
+$zuster_telnummer = $_POST["telnummer"];
+echo "aldfs";
+echo $zuster_telnummer;
+
+if(!mysql_connect($db['host'], $db['user'], $db['pass'])) 
+{ 
+    echo 'Fout bij verbinden: ' .mysql_error(); 
+} 
+elseif(!mysql_select_db($db['dbname'])) 
+{ 
+   echo 'Fout bij selecteren database:' .mysql_error(); 
+} 
+
+$sql = "update tabel set zuster_telnummer=$zuster_telnummer where device_id=$device_id";  
+
+if(!$res = mysql_query($sql)) 
+{ 
+    trigger_error(mysql_error().'<br />In query: '.$sql); 
+} 
+
+$sql = "select * from tabel where device_id=$device_id"; 
+
+if(!$res = mysql_query($sql)) 
+{  
+    trigger_error(mysql_error().'<br />In query: '.$sql); 
+} 
+
+$row = mysql_fetch_array($res);
+
+?>
+
+<HTML>
+<HEAD>
+<TITLE>TRACKING ELDERLY</TITLE>
+<meta charset="utf-8">
+<meta name="keywords" content="keyword 1, keyword 2">
+<meta name="description" content="beschrijving van je webpagina">
+<link rel="stylesheet" href="layout.css" type="text/css" media="screen">
+</HEAD>
+<BODY> 
+<div class=containter2 style="margin-left:auto; margin-right:auto; width:200px; margin-top:200px;">
+<form action="zustertelnummer.php?get_device_id=<?php echo $device_id?> " method="post">
+Telefoonnummer zuster voor <?php echo $row[1] ?><br>
+Telefoonnummer: <input type="text" name="telnummer"><br>
+<input type="submit" value="Verzenden">
+</form>
+</div>
+</BODY>
+</HTML>
